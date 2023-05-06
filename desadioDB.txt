@@ -1,0 +1,45 @@
+create database desafio_yesenia_urdaneta_211;
+--// acceder a la bases de datos 
+\c desafio_yesenia_urdaneta_211;
+
+-- crear la tabla clientes
+create table clientes (
+	email varchar(50),
+	nombre varchar(50),
+	telefono varchar(16),
+	empresa varchar(50),
+	prioridad smallint
+);
+-- mostrar las tablas creadas y desplegar la tabla
+\dt;
+select * from clientes;
+
+--// ingreso de clientes
+-- de forma individual esfecificando los campos de la tabla y el orden de ingreso segun el orde de los campos
+insert into clientes (email, nombre, telefono, empresa, prioridad) values ('email@cliente1.ve', 'Cliente1', '2222221', 'empresa1', 7); 
+-- de forma grupal con un solo inser y sin especificar los campos solo los valores en el mismo orde de los campo de la tabla
+insert into clientes 
+	values 
+		('email@cliente2.ve', 'Cliente2', '2222222', 'empresa2', 5), 
+		('email@cliente3.ve', 'Cliente3', '2222223', 'empresa3', 3), 
+		('email@cliente4.ve', 'Cliente4', '2222224', 'empresa4', 8),
+		('email@cliente5.ve', 'Cliente5', '2222225', 'empresa3', 8)
+;
+-- de forma individual. En caso de no poseer inf de algun campo, este se incluye con solo '' y dejandolo en blanco
+insert into clientes values ('ana@123.cl', 'ana cepeda', '', 'empresa4', 6);
+insert into clientes values ('victor@abc.com', 'victor quintin', '332233', 'Servel', 5);
+insert into clientes values ('maria@cde.cl', 'maria zamorano', '44444', 'Avior', 6);
+insert into clientes values ('urdaneta@gmail.com', 'yesenia urdaneta', '3423431', 'avior', 8);
+insert into clientes values ('diana@nmj.ve', 'diana soto', '23124', 'empresa4', 9);
+
+-- seleccionar los 3 clientes de mayor prioridad. primero se ordenan de forma descendente y luego se limita a 3 clientes 
+select * from clientes order by prioridad desc limit 3;
+
+-- seleccionar 2 clientes con una comprioridad 8 
+select * from clientes where prioridad=8 limit 2;
+
+-- seleccionar 2 clientes que trabajan en la empresa 4
+select * from clientes where empresa='empresa4' limit 2;
+
+select * from clientes where prioridad=8 limit 2;
+select * from clientes where empresa='empresa4' limit 2;
